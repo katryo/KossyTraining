@@ -1,6 +1,11 @@
 : cascade base
 : around content -> {
-<h1><: $greeting :> <: $c.stash.site_name :></h1>
-<p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+<h1><: $c.stash.site_name :></h1>
+<p><: $info :></p>
+<p>何か書こう！！！！！！！！！！！</p>
+<form action="<: $c.req.uri_for('/') :>" method="post">
+    <textarea name="body"></textarea>
+    <input type="submit" value="送る">
+</form>
 : }
 
