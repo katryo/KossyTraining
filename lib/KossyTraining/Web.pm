@@ -7,7 +7,7 @@ use Kossy;
 use KossyTraining::Model::DB;
 
 my $teng = KossyTraining::Model::DB->new(
-    +{connect_info => ['dbi:mysql:database=kossy_training', 'root', '']}
+    +{connect_info => ['dbi:mysql:database=kossy_training', 'root', 'vagrantmysql']}
 );
 
 filter 'set_title' => sub {
