@@ -4,8 +4,13 @@
 <p><: $info :></p>
 <p>何か書こう！！！！！！！！！！！</p>
 <form action="<: $c.req.uri_for('/') :>" method="post">
-    <textarea name="body"></textarea>
+    <textarea name="name"></textarea>
     <input type="submit" value="送る">
 </form>
+
+: while $iter.next -> $row{
+        <p> <: $row.name :> </p>
+: }
+
 : }
 

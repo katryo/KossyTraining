@@ -7,8 +7,10 @@ use Kossy;
 use KossyTraining::Model::DB;
 
 my $teng = KossyTraining::Model::DB->new(
-    +{connect_info => ['dbi:mysql:database=kossy_training', 'root', 'vagrantmysql']}
+    +{connect_info => ['dbi:mysql:database=kossy_training', 'root', '']}
 );
+
+#vagrantmysqlがvagrantパスワード
 
 filter 'set_title' => sub {
     my $app = shift;
@@ -21,21 +23,23 @@ filter 'set_title' => sub {
 
 get '/' => [qw/set_title/] => sub {
     my ( $self, $c )  = @_;
-    $c->render('index.tx', { info => "Something goes here!" });
+    my $iter = $teng->search('todos');
+    $c->render('index.tx', { info => "Something goes here!", iter => $iter });
 };
+
 
 post '/' => sub {
     my ( $self, $c )  = @_;
     my $result = $c->req->validator([
-        'body' => {
+        'name' => {
             default => 'Hey, write something.'
         }
     ]);
-    my $body = $result->valid->get('body');
-    my $row = $teng->insert('texts' => {
-        body => $body
+    my $name = $result->valid->get('name');
+    my $row = $teng->insert('todos' => {
+        name => $name
     });
-    $c->render('index.tx', { info => "we got " . $body });
+    $c->render('index.tx', { info => "we got " . $name });
 };
 
 #以下使ってない

@@ -7,8 +7,9 @@ use warnings;
 use Teng::Schema::Declare;
 
 table {
-    name 'texts';
-    columns qw/body/;
+    name 'todos';
+    pk 'id';
+    columns qw/id name/;
 };
 
 1;
