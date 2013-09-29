@@ -39,7 +39,8 @@ post '/' => sub {
     my $row = $teng->insert('todos' => {
         name => $name
     });
-    $c->render('index.tx', { info => "we got " . $name });
+    my $iter = $teng->search('todos');
+    $c->render('index.tx', { info => "we got " . $name , iter => $iter });
 };
 
 #以下使ってない
