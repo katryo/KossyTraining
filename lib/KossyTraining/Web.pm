@@ -43,6 +43,13 @@ post '/' => sub {
     $c->render('index.tx', { info => "we got " . $name , iter => $iter });
 };
 
+post '/{id:[0-9]+}/delete' => sub{
+    my ( $self, $c ) = @_;
+    my $id = $c->args->{id};
+    $teng->delete('todos', +{id => $id});
+    $c->redirect($c->req->uri_for('/'));
+};
+
 #以下使ってない
 get '/json' => sub {
     my ( $self, $c )  = @_;

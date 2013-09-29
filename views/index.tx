@@ -9,8 +9,15 @@
 </form>
 
 : while $iter.next -> $row{
+<div class="block">
         <p> <: $row.name :> </p>
+    <form action="/<: $row.id :>/delete" method="post">
+        <input type="submit" value="削除">
+    </form>
+</div>
+
 : }
+
 
 : }
 
